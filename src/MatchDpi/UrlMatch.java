@@ -42,27 +42,28 @@ public class UrlMatch {
   public static void main(String[] args) throws IOException, InterruptedException,
       ClassNotFoundException {
 
-    Configuration conf = new Configuration();
-    conf.set("mapreduce.job.queuename", "ven4");
-    conf.set("test", "yeah");
-    conf.set("mapred.textoutputformat.ignoreseparator", "true");
-    conf.set("mapred.textoutputformat.separator", ",");
     // String regexPath ="/user/yuanshu/lzd/cache/regex.txt";
-    if (args.length != 6) {
+    if (args.length != 7) {
       System.out.println("invalid input");
       return;
     }
+    String queue= args[args.length-2];
     String regexPath = args[args.length - 1];
     String inputPath = args[0];
     String outputPath = args[1];
     String type = args[2];
     String pvuv = args[3];
     String sequence=args[4];
+    Configuration conf = new Configuration();
+    conf.set("mapreduce.job.queuename", queue);
+    conf.set("test", "yeah");
+    conf.set("mapred.textoutputformat.ignoreseparator", "true");
+    conf.set("mapred.textoutputformat.separator", ",");
     conf.set("type", type);
     conf.set("pvuv", pvuv);
 
     @SuppressWarnings("deprecation")
-    Job job = new Job(conf, "jobMapReduce");
+    Job job = new Job(conf, "jobMapReduce-airui-lzd");
     job.setJarByClass(UrlMatch.class);
     job.setMapOutputKeyClass(Text.class);
     job.setMapOutputValueClass(Text.class);

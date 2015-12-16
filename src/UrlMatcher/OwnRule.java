@@ -11,7 +11,6 @@ public class OwnRule extends DaoRule{
   public OwnRule(Path regexPath, Configuration conf) throws IOException {
     super(regexPath, conf);
     // TODO Auto-generated constructor stub
-    
   }
 
 }
